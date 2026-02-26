@@ -44,8 +44,11 @@ resource "aws_security_group" "blog" {
 
 # aws security group resource rule below
 resource "aws_security_group_rule" "blog_http_in" {
-  type = "ingress"
+  type      = "ingress"
   from_port = 80
-  to_port = 80 
-  protocol = "tcp"
+  to_port   = 80 
+  protocol  = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+
+  security_group_id = aws_security_group.blog.id
 }
