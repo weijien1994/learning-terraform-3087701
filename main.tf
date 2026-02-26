@@ -88,5 +88,5 @@ module "blog_sg" {                                                 # define modu
   ingress_cidr_blocks    = ["0.0.0.0/0"]
 
   egress_rules           = ["all-all"]
-  egress_cidr_block      = ["0.0.0.0/0"]
+  egress_cidr_blocks     = ["0.0.0.0/0"]
 }
