@@ -16,9 +16,9 @@ data "aws_ami" "app_ami" {
 
 
 # Identify cloud resources nameing and details
-resource "aws_instance" "blog" {                 #  aws_instance recourse with name "Blog" on terraform 
-  ami           = data.aws_ami.app_ami.id
-  instance_type = var.instance_type
+resource "aws_instance" "blog" {                 # aws_instance recourse with name "Blog" on terraform 
+  ami           = data.aws_ami.app_ami.id        # ami ID gather from top data
+  instance_type = var.instance_type              # instance type gether from variable.tf 
 
   tags = {
     Name = "HelloWorld"
