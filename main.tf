@@ -24,7 +24,7 @@ data "aws_vpc" "default" {                       # defined vpc ID
 
 
 # define cloud resources
-# aws instance recourse below
+# aws instance resource below
 resource "aws_instance" "blog" {                 # aws_instance recourse with name "Blog" on terraform 
   ami           = data.aws_ami.app_ami.id        # Base image ID, refer to data block ID 
   instance_type = var.instance_type              # instance type refer to variable.tf 
@@ -40,4 +40,12 @@ resource "aws_security_group" "blog" {
   description = "Allow http and https in, Allow everything out" 
 
   vpc_id = data.aws_vpc.default.id               # vpc id refer to data block ID     
+}
+
+# aws security group resource rule below
+resource "aws_security_group_rule" "blog_http_in" {
+  type = "ingress"
+  from_port = 80
+  to_port = 80 
+  protocol = "tcp"
 }
