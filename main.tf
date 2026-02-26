@@ -77,10 +77,16 @@ resource "aws_security_group_rule" "blog_everything_out" {
 
 
 # module
-module "security-group" {                                                 # change module code name
+module "blog_sg" {                                                 # change module code name
   source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module path/location
   version = "5.3.1" 
   name = "blog_new"
 
-  vpc_id = data.aws_vpc.default.id   
+  vpc_id = data.aws_vpc.default.id
+
+  ingress_rules          = ["http-80-tcp","https-443-tcp"]          # refer to module doc for condiguration
+  ingress_cidr_blocks    = ["0.0.0.0/0"]
+
+  egress_rules           = [http-80-tcp","https-443-tcp"]
+  egress_cidr_block      = ["0.0.0.0/0"]
 }
