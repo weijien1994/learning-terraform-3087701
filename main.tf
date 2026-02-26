@@ -37,8 +37,8 @@ resource "aws_instance" "blog" {                 # aws_instance recourse with na
 }
 
 # aws security group resource below
-resource "aws_security_group" "blog" {        
-  name        = "blog"
+resource "aws_security_group" "blog" {           # blog name on terraform console
+  name        = "blog"                           # name in aws console
   description = "Allow http and https in, Allow everything out" 
 
   vpc_id = data.aws_vpc.default.id               # vpc id refer to data block ID     
@@ -77,10 +77,10 @@ resource "aws_security_group_rule" "blog_everything_out" {
 
 
 # module
-module "blog_sg" {                                                 #define module code name
+module "blog_sg" {                                                 # define module code name
   source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module path/location
   version = "5.3.1" 
-  name = "blog_new"
+  name = "blog_new"                                                # name in aws console
 
   vpc_id = data.aws_vpc.default.id
 
