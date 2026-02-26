@@ -1,4 +1,4 @@
-data "aws_ami" "app_ami" {
+data "aws_ami" "app_ami" {                      #  defined base image ID
   most_recent = true
 
   filter {
