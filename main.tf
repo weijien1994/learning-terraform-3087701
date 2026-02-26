@@ -87,6 +87,6 @@ module "blog_sg" {                                                 #define modul
   ingress_rules          = ["http-80-tcp","https-443-tcp"]          # refer to module doc for condiguration
   ingress_cidr_blocks    = ["0.0.0.0/0"]
 
-  egress_rules           = [http-80-tcp","https-443-tcp"]
+  egress_rules           = ["all-all"]
   egress_cidr_block      = ["0.0.0.0/0"]
 }
