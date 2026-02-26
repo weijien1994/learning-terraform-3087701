@@ -23,11 +23,11 @@ data "aws_vpc" "default" {                       # defined vpc ID
 
 
 
-# Identify cloud resources
+# define cloud resources
 # aws instance recourse below
 resource "aws_instance" "blog" {                 # aws_instance recourse with name "Blog" on terraform 
-  ami           = data.aws_ami.app_ami.id        # Base image to use, dynamic id/data reference top 
-  instance_type = var.instance_type              # instance type gether from variable.tf 
+  ami           = data.aws_ami.app_ami.id        # Base image ID, refer to data block ID 
+  instance_type = var.instance_type              # instance type refer to variable.tf 
 
   tags = {
     Name = "HelloWorld"
@@ -35,9 +35,9 @@ resource "aws_instance" "blog" {                 # aws_instance recourse with na
 }
 
 # aws security group resource below
-resource "aws_security_group" "blog" {
+resource "aws_security_group" "blog" {        
   name        = "blog"
   description = "Allow http and https in, Allow everything out" 
 
-  vpc_id = data.aws_vpc.default.id
+  vpc_id = data.aws_vpc.default.id               # vpc id refer to data block ID     
 }
