@@ -77,7 +77,7 @@ resource "aws_security_group_rule" "blog_everything_out" {
 
 
 # module
-module "blog_sg" {                                                 # change module code name
+module "blog_sg" {                                                 #define module code name
   source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module path/location
   version = "5.3.1" 
   name = "blog_new"
