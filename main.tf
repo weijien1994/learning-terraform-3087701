@@ -29,7 +29,7 @@ resource "aws_instance" "blog" {                 # aws_instance recourse with na
   ami           = data.aws_ami.app_ami.id        # Base image ID, refer to data block ID 
   instance_type = var.instance_type              # instance type refer to variable.tf 
 
-  vpc_security_group_ids = [module.blog.sg.security_group_id]     # module output refer to terraform doc
+  vpc_security_group_ids = [module.blog_sg.security_group_id]     # module output refer to terraform doc
 
   tags = {
     Name = "HelloWorld"
