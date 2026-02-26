@@ -6,6 +6,8 @@ terraform {
   }
 }
 
+
+# Identify cloud provider details. 
 provider "aws" {
   region  = "us-west-2"
 }
