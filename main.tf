@@ -14,7 +14,9 @@ data "aws_ami" "app_ami" {
   owners = ["979382823631"] # Bitnami
 }
 
-resource "aws_instance" "blog" {
+
+# Identify cloud resources nameing and details
+resource "aws_instance" "blog" {                 #  aws_instance recourse with name "Blog" on terraform 
   ami           = data.aws_ami.app_ami.id
   instance_type = var.instance_type
 
