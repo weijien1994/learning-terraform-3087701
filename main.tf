@@ -13,7 +13,7 @@ data "aws_ami" "app_ami" {                      #  defined base image ID
     values = ["hvm"]
   }
 
-  owners = ["979382823631"]                      # Bitnami
+  owners = ["979382823631"]               
 }
 
 # vpc data block below 
