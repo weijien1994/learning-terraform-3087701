@@ -121,12 +121,12 @@ module "blog_alb" {                                       # name module in terra
 
   security.groups = [module.blog_sg.security_group_id]    # add SG to ALB
 
-  listeners = {
+  listeners = {                                           # add selected traffic to perform alb
     blog-http = {
       port     = 80
       protocol = "HTTP"
       forward = {
-        target_group_arn = aws_lb_target.group.blog.arn 
+        target_group_arn = aws_lb_target.group.blog.arn    # add target group for abl ingress selected traffic
       }
     }
 
