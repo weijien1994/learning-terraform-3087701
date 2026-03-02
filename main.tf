@@ -62,7 +62,7 @@ resource "aws_security_group" "blog" {           # Resource = SG, SG name on ter
   name        = "blog"                           # SG name in aws console = blog
   description = "Allow http and https in, Allow everything out" 
 
-  vpc_id = data.aws_vpc.default.id               # vpc id refer to data block ID     
+  vpc_id = module.blog_vpc.vpc_id               # add vpc module id to SG group      
 }
 
 # aws security group modules resource below configuration (define modules and leverage on existing module from tarraform/aws) 
