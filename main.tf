@@ -44,6 +44,21 @@ resource "aws_security_group" "blog" {           # Resource = SG, SG name on ter
   vpc_id = data.aws_vpc.default.id               # vpc id refer to data block ID     
 }
 
+# security group modules configuration (define modules and leverage on existing module from tarraform/aws)
+module "blog_sg" {                                                 # define module code name in terraform
+  source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module source/path/location
+  version = "5.3.1" 
+  name = "blog_new"                                                # name in aws console
+
+  vpc_id = data.aws_vpc.default.id
+
+  ingress_rules          = ["http-80-tcp","https-443-tcp"]          # refer to module doc for condiguration
+  ingress_cidr_blocks    = ["0.0.0.0/0"]
+
+  egress_rules           = ["all-all"]
+  egress_cidr_blocks     = ["0.0.0.0/0"]
+}
+
 # aws security group resource rule below
 resource "aws_security_group_rule" "blog_http_in" {
   type      = "ingress"
@@ -76,18 +91,3 @@ resource "aws_security_group_rule" "blog_everything_out" {
 }
 
 
-# define modules (leverage on existing module from tarraform/aws) 
-# security group modules configuration
-module "blog_sg" {                                                 # define module code name in terraform
-  source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module source/path/location
-  version = "5.3.1" 
-  name = "blog_new"                                                # name in aws console
-
-  vpc_id = data.aws_vpc.default.id
-
-  ingress_rules          = ["http-80-tcp","https-443-tcp"]          # refer to module doc for condiguration
-  ingress_cidr_blocks    = ["0.0.0.0/0"]
-
-  egress_rules           = ["all-all"]
-  egress_cidr_blocks     = ["0.0.0.0/0"]
-}
