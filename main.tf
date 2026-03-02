@@ -29,16 +29,16 @@ resource "aws_instance" "blog" {                 # aws_instance recourse with na
   ami           = data.aws_ami.app_ami.id        # Base image ID, refer to data block ID 
   instance_type = var.instance_type              # instance type refer to variable.tf 
 
-  vpc_security_group_ids = [module.blog_sg.security_group_id]     # module output refer to terraform doc
+  vpc_security_group_ids = [module.blog_sg.security_group_id]     # module output reference to terraform module doc output var
 
   tags = {
-    Name = "HelloWorld"
+    Name = "HelloWorld"                          # add tag to instance 
   }
 }
 
 # aws security group resource below
-resource "aws_security_group" "blog" {           # blog name on terraform console
-  name        = "blog"                           # name in aws console
+resource "aws_security_group" "blog" {           # Resource = SG, SG name on terraform console = blog
+  name        = "blog"                           # SG name in aws console = blog
   description = "Allow http and https in, Allow everything out" 
 
   vpc_id = data.aws_vpc.default.id               # vpc id refer to data block ID     
@@ -76,10 +76,10 @@ resource "aws_security_group_rule" "blog_everything_out" {
 }
 
 
-# define modules 
+# define modules (leverage on existing module from tarraform/aws) 
 # security group modules configuration
-module "blog_sg" {                                                 # define module code name
-  source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module path/location
+module "blog_sg" {                                                 # define module code name in terraform
+  source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module source/path/location
   version = "5.3.1" 
   name = "blog_new"                                                # name in aws console
 
