@@ -37,14 +37,14 @@ resource "aws_instance" "blog" {                 # aws_instance recourse with na
 }
 
 # aws security group resource below
-resource "aws_security_group" "blog" {           # Resource = SG, SG name on terraform console = blog
+resource "aws_security_group" "blog" {           # Resource = SG, SG name on terraform console = blog (Create new SG Group)
   name        = "blog"                           # SG name in aws console = blog
   description = "Allow http and https in, Allow everything out" 
 
   vpc_id = data.aws_vpc.default.id               # vpc id refer to data block ID     
 }
 
-# security group modules configuration (define modules and leverage on existing module from tarraform/aws)
+# security group modules configuration (define modules and leverage on existing module from tarraform/aws) (Create SG Group with module) 
 module "blog_sg" {                                                 # define module code name in terraform
   source  = "terraform-aws-modules/security-group/aws//modules/http-80"   # define module source/path/location
   version = "5.3.1" 
