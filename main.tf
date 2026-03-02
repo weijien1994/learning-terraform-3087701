@@ -112,27 +112,6 @@ resource "aws_security_group_rule" "blog_everything_out" {
 }
 
 # aws ALB module resource below
-module "blog_alb" {                                       # name module in terraform
-  source = "terraform-aws-modules/alb/aws"
-
-  name    = "blog-alb"                                    # alb name in aws
-  vpc_id  = module.blog_vpc.vpc_id
-  subnets = module.blog_vpc.public_subnets
-
-
-  listeners = {                                           # add selected traffic to perform alb
-    blog-http = {
-      port     = 80
-      protocol = "HTTP"
-      forward = {
-        target_group_arn = aws_lb_target.group.blog.arn    # add target group for abl ingress selected traffic
-      }
-    }
-
-  tags = {
-    Environment = "dev"
-  }
-}
 
 # aws target group resource below
 resource "aws_lb_target_group" "blog" {
