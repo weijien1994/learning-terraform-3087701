@@ -119,7 +119,6 @@ module "blog_alb" {                                       # name module in terra
   vpc_id  = module.blog_vpc.vpc_id
   subnets = module.blog_vpc.public_subnets
 
-  security.groups = [module.blog_sg.security_group_id]    # add SG to ALB
 
   listeners = {                                           # add selected traffic to perform alb
     blog-http = {
