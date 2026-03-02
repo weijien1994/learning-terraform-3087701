@@ -50,7 +50,7 @@ resource "aws_instance" "blog" {                 # aws_instance recourse with na
 
   vpc_security_group_ids = [module.blog_sg.security_group_id]     # Add SG group ID to instance, SG Group ID reference to terraform module doc output var
 
-  subnet_id = module.blog_vpc.public_subnets[0]                   # add vpc ip to instance
+  subnet_id = module.blog_vpc.public_subnets[0]                   # add module vpc ip to instance
 
   tags = {
     Name = "HelloWorld"                          # add tag to instance 
