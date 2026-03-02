@@ -111,4 +111,26 @@ resource "aws_security_group_rule" "blog_everything_out" {
   security_group_id = aws_security_group.blog.id          # add SG rule to security group
 }
 
+# aws ALB module resource below
+module "blog_alb" {                                       # name module in terraform
+  source = "terraform-aws-modules/alb/aws"
 
+  name    = "blog-alb"                                    # alb name in aws
+  vpc_id  = module.blog_vpc.vpc_id
+  subnets = module.blog_vpc.public_subnets
+
+  security.groups = [module.blog_sg.security_group_id]     # add SG to ALB
+
+  listeners = {
+    blog-http = {
+      port     = 80
+      protocol = "HTTP"
+      forward = {
+        target_group_arn = aws_lb_target.group.blog.arn 
+      }
+    }
+
+  tags = {
+    Environment = "dev"
+  }
+}
