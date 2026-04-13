@@ -17,7 +17,7 @@ data "aws_ami" "app_ami" {                      #  defined base image ID, to use
 }
 
 # vpc data block below 
-# data "aws_vpc" "default" {                       # defined vpc ID
+# data "aws_vpc" "default" {                       # defined vpc ID, to use data = "data.aws_vpc.default.id"
 #   default = true
 # }
 
