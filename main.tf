@@ -1,4 +1,4 @@
-# define data block 
+# define data block                             data are read only information outside terraform dic, Variable are read and write data witin terraform
 # ami image data block below
 data "aws_ami" "app_ami" {                      #  defined base image ID
   most_recent = true
